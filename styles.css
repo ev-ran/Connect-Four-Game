@@ -1,0 +1,130 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Snowburst One', cursive;
+    text-shadow: 3px 5px 2px #474747;
+}
+
+#main_container {
+    display: grid;
+    grid-template-columns: 150px 1fr 150px;
+    grid-template-rows: 10% 75% 15%;
+    width: 55vw;
+    height: 98vh;
+    margin: auto;
+}
+
+#game-name {
+    grid-area: 1/2/2/3;
+    text-align: center;
+}
+
+#field {
+    grid-area: 2/2/3/3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#play_field {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+    margin: 155px auto;
+    border: 1px solid rgb(195, 206, 195);
+    height: 500px;
+    margin-top: 250px;
+}
+
+#ball_1 {
+    grid-area: 2/1/3/2;
+}
+
+#ball_2 {
+    grid-area: 2/3/3/4;
+}
+
+.ball_field {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#manage_panel {
+    grid-area: 3/2/4/3;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.col {
+    border: 1px solid rgb(195, 206, 195);
+    background-color: rgb(250, 250, 250);
+    display: flex;
+    flex-flow: column;
+    flex-direction: column-reverse;
+    align-items: center;
+    width: 72px;
+    height: 500px;
+    border-bottom: 12px solid rgb(195, 206, 195);
+    padding-top: 50px;
+}
+
+.red {
+    width: 70px;
+    height: 70px;
+    border: 1px solid rgb(175, 0, 42);
+    background: radial-gradient(rgba(5, 5, 5, 0.0), rgba(5, 5, 5, 0.6));
+    background-color: rgb(255, 42, 0);
+    border-radius: 50%;
+    -webkit-box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.87);
+    box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.87);
+}
+
+.black {
+    width: 70px;
+    height: 70px;
+    border: 1px solid black;
+    background: radial-gradient(rgba(256, 256, 256, 0.5), rgba(255, 255, 255, 0.0));
+    background-color: black;
+    border-radius: 50%;
+    -webkit-box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.87);
+    box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.87);
+}
+
+.col:hover {
+    background-color: rgb(245, 245, 245);
+}
+
+#manage {
+    grid-area: 2/1/3/2;
+    width: 500px;
+    height: 150px;
+}
+
+.button {
+    margin: 0 60px 0 60px;
+    width: 60px;
+    height: 60px;
+    color: white;
+}
+
+#start_game {
+    border-radius: 50% 50%;
+}
+
+.score {
+    font-size: 2.5em;
+    margin: 0 10px 0 10px;
+}
+
+#score_board {
+    display: flex;
+    color: rgb(155, 166, 155)
+}
+
+#game-name h1 {
+    font-size: 400%;
+    color: rgb(155, 166, 155);
+    text-shadow: 3px 5px 2px #474747;
+}

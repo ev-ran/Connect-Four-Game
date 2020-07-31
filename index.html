@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect_Four</title>
+    <link href="https://fonts.googleapis.com/css2?family=Snowburst+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+
+    <div id="main_container">
+        <!-- <div id="bowl_1" class="bowl"></div> -->
+        <div id="game-name">
+            <h1>connect four</h1>
+        </div>
+
+        <div id="ball_1" class='ball_field'>
+            <div class='red ball_1'></div>
+        </div>
+
+        <div id="field">
+
+
+
+            <div id="play_field">
+
+                <div id='col_0' class="col"></div>
+                <div id='col_1' class="col"></div>
+                <div id='col_2' class="col"></div>
+                <div id='col_3' class="col"></div>
+                <div id='col_4' class="col"></div>
+                <div id='col_5' class="col"></div>
+                <div id='col_6' class="col"></div>
+
+
+            </div>
+        </div>
+
+        <div id="ball_2" class='ball_field'>
+            <div class='black ball_2'></div>
+
+
+        </div>
+        <div id='manage_panel'>
+
+            <div id="score_board">
+                <button id='start_game' class="button red">Start Game</button>
+                <div id="total_score_red" class='score'>0</div>
+                <span class='score'>:</span>
+                <div id="total_score_black" class='score'>0</div>
+                <button id='reset_game' class="button black">Reset Game</button>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="./PlayDesk.js"></script>
+    <script src="./main.js"></script>
+</body>
+
+</html>
