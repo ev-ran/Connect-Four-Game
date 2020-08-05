@@ -22,12 +22,14 @@ let score_black = 0;
 let start_turn = 0; //what color start new game
 let turn = 0; //to change color inside one game
 let game_over = false;
+let numberOfBallsOnField = 0;
 
 //================================
 
 let playdesk = new Playdesk(6, 7);
 deskArray = playdesk.createArray();
 playdesk.playBalls();
+numberOfBallsOnField = 0;
 
 //====Button Start Game==========
 
@@ -49,10 +51,10 @@ button_reset.addEventListener('click', function () {
     score_black_element.innerHTML = score_black;
     let start_turn = 2; //what color start new game
     let turn = 2; //to change color inside one game
+    numberOfBallsOnField = 0;
 
     playdesk.playBalls();
 })
-
 // console.log(deskArray);
 
 //============Play Field========================
@@ -98,23 +100,37 @@ function clickOnColumn() {
 
         deskArray[rowNum][columnNum] = numInMatrix;  // set number in matrix - with ball
 
-
+        numberOfBallsOnField++;
 
         insertBall(color, column);  // insert ball - interface
 
         let isWinCombination = check(numInMatrix, columnNum, rowNum);
 
-        console.log("isWin: " + isWinCombination);
-       
-        if (!isWinCombination) { ++turn; }
+        if (!isWinCombination) {
+
+            if (numberOfBallsOnField === 42) {
+                game_over = true;
+                allBallsHighlight();
+                score_red += 0.5;
+                score_black += 0.5;
+
+                score_red_element.innerHTML = score_red;
+                score_black_element.innerHTML = score_black;
+
+                scoreAnimation(score_red_element);
+                scoreAnimation(score_black_element);
+
+                return;
+            } else {
+                ++turn;
+            }
+        }
 
         // console.log(deskArray);
         // console.log("rowNum" + rowNum);
         // console.log("columnNum" + columnNum);
-        
     }
 }
-
 
 function cleanField() {
 
@@ -132,8 +148,10 @@ function startNewGame() {
     playdesk = new Playdesk(6, 7);
     deskArray = playdesk.createArray();
 
+
     game_over = false;
-    start_turn ++;
+    numberOfBallsOnField = 0;
+    start_turn++;
     turn = start_turn;
 
 
@@ -157,7 +175,7 @@ function check(numInMatrix, columnNum, rowNum) {
 
         column_I = document.getElementById("col_" + columnNum);
         element_to_highlight = column_I.children[5 - rowNum];
-        
+
         wintAnimation(element_to_highlight);
 
         connect4_hightlight(numInMatrix, columnNum, rowNum, 1, 0);
@@ -176,7 +194,7 @@ function check(numInMatrix, columnNum, rowNum) {
 
         column_I = document.getElementById("col_" + columnNum);
         element_to_highlight = column_I.children[5 - rowNum];
-        
+
         wintAnimation(element_to_highlight);
 
         connect4_hightlight(numInMatrix, columnNum, rowNum, 0, 1);
@@ -196,7 +214,7 @@ function check(numInMatrix, columnNum, rowNum) {
 
         column_I = document.getElementById("col_" + columnNum);
         element_to_highlight = column_I.children[5 - rowNum];
-        
+
         wintAnimation(element_to_highlight);
         connect4_hightlight(numInMatrix, columnNum, rowNum, 1, 1);
         connect4_hightlight(numInMatrix, columnNum, rowNum, -1, -1);
@@ -211,7 +229,7 @@ function check(numInMatrix, columnNum, rowNum) {
 
         column_I = document.getElementById("col_" + columnNum);
         element_to_highlight = column_I.children[5 - rowNum];
-        
+
         wintAnimation(element_to_highlight);
 
         connect4_hightlight(numInMatrix, columnNum, rowNum, 1, -1);
@@ -220,7 +238,7 @@ function check(numInMatrix, columnNum, rowNum) {
         return isWin;
 
     }
-    
+
     return isWin;
 }
 
@@ -258,23 +276,31 @@ function connect4_hightlight(numInMatrix, columnNum, rowNum, step_column, step_r
 
     let colNNH = columnNum + step_column; // Skip the piece at (y, x) to avoid counting it twice
     let rowNNH = rowNum + step_row;  // should looking in both directions on a line.
-    
+
     while (colNNH >= 0 && colNNH < 7 && rowNNH >= 0 && rowNNH < 6 && deskArray[rowNNH][colNNH] === numInMatrix) {
         // count++;
 
 
         let column_I = document.getElementById("col_" + colNNH);
-        console.log(column_I)
+
         let element_to_highlight = column_I.children[5 - rowNNH];
 
-        console.log("*/*/* " + element_to_highlight)
-        
         colNNH += step_column;
         rowNNH += step_row;
         wintAnimation(element_to_highlight);
     }
 
     // return count;
+}
+
+function allBallsHighlight() {
+    for (let columnNum = 0; columnNum < 7; columnNum++) {
+        let column = document.getElementById('col_' + columnNum);
+        for (let childNum = 0; childNum < 6; childNum++) {
+            let element_to_highlight = column.children[5 - childNum]
+            wintAnimation(element_to_highlight);
+        }
+    }
 }
 
 function color_trigger(turn) {
@@ -308,7 +334,7 @@ function startAnimation(element) {
         { transform: 'translateY(-700px)' },
         { transform: 'translateY(7px)' },
         { transform: 'translateY(-20px)' },
-        // { transform: 'rotateZ(360deg)' },
+
         { transform: 'scale(1)' },
         { transform: 'scale(0.97)' },
         { transform: 'scale(1)' },
